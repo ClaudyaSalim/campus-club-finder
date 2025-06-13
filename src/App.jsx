@@ -1,4 +1,5 @@
 import {BrowserRouter, Routes, Route} from "react-router"
+import { useState } from "react";
 import {clubs} from "./components/ClubData.jsx"
 import Home from "./pages/Home.jsx";
 import ClubList from "./pages/ClubList.jsx";
@@ -10,6 +11,8 @@ import Navbar from "./components/Navbar.jsx";
 function App() {
 
   console.log(clubs);
+  const [joinedList, setJoined] = useState([]);
+  console.log(joinedList);
 
   return (
     <div >
@@ -19,7 +22,7 @@ function App() {
           <Route index element={<Home/>}/>
           <Route path="clubs">
             <Route index element={<ClubList/>}/>
-            <Route path=":clubId" element={<ClubDetail/>}/>
+            <Route path=":clubId" element={<ClubDetail joined={joinedList} setJoined={setJoined}/>}/>
           </Route>
           <Route path="about" element={<About/>}/>
           <Route path="*" element={<NotFound/>}/>
